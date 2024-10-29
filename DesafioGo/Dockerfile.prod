@@ -1,0 +1,16 @@
+FROM golang:alpine as builder
+
+WORKDIR /usr/src/app
+
+COPY fullcyclerocks.go /usr/src/app/
+
+RUN go mod init fullcyclerocks && \
+    go build -ldflags '-s -w' /usr/src/app/ ./...
+
+CMD /usr/src/app/fullcyclerocks
+
+FROM scratch
+WORKDIR /usr/src/app/
+COPY --from=builder /usr/src/app /usr/src/app/
+
+CMD ["./fullcyclerocks"]
