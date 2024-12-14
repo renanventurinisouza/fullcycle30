@@ -9,7 +9,6 @@ const config = {
   database: 'nodedb'
 };
 const mysql = require('mysql2');
-const json2html = require('node-json2html')
 const connection = mysql.createConnection(config)
 
 // Conectar ao banco de dados
