@@ -4,10 +4,11 @@ services:
     build:
       context: app
     container_name: app
-    entrypoint: dockerize -wait tcp://db:3306 -timeout 20s docker-entrypoint.sh
+    entrypoint: sh -c "dockerize -wait tcp://db:3306 -timeout 20s &&
+                npm install &&
+                node index.js"
     volumes:
       - ./app:/usr/src/app/
-    command: node index.js
     tty: true
     ports:
       - 3000:3000
