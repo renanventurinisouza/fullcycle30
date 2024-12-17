@@ -9,12 +9,6 @@ RUN apt-get update \
     && wget -O - https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz | tar xzf - -C /usr/local/bin \
     && apt-get autoremove -yqq --purge wget && rm -rf /var/lib/apt/lists/*
 
-RUN npm install mysql2 --save
-RUN npm install
-RUN npm install express --save
-RUN npm init -y
-
-COPY index.js /usr/src/app/
-COPY  . .
+COPY . .
 
 EXPOSE 3000
